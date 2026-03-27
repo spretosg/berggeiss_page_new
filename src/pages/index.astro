@@ -1,11 +1,106 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const base = import.meta.env.BASE_URL;
+
+const menu = [
+  {
+    title: "Infos & Strecken",
+    desc: "Erfahre alles was du wissen musst",
+    icon: "🏃",
+    link: "strecken"
+  },
+  {
+    title: "Ranglisten",
+    desc: "Die Geschichten vergangener Jahre",
+    icon: "🏆",
+    link: "rangliste"
+  },
+  {
+    title: "Sponsoren",
+    desc: "Unsere Partner",
+    icon: "🤝",
+    link: "sponsoren"
+  },
+  {
+    title: "Glarner Laufcup",
+    desc: "Wir sind Teil der Glarner Laufgemeinschaft. Finde Infos zum Glarner Laufcup.",
+    icon: "✉️",
+    link: "Glarner Laufcup"
+  }
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Glarner Berggeiss" image="/img/hero.jpg">
+
+<section class="hero">
+  <h1>Berglauferlebnis in Braunwald</h1>
+</section>
+
+<section class="menu-grid">
+  {menu.map(item => (
+    <a href={`${base}${item.link}`} class="menu-card">
+      <div class="icon">{item.icon}</div>
+      <h3>{item.title}</h3>
+      <p>{item.desc}</p>
+    </a>
+  ))}
+</section>
+
 </Layout>
+
+<style>
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  opacity: 0.8;
+}
+
+/* GRID */
+.menu-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* CARD */
+.menu-card {
+  display: block;
+  padding: 2rem;
+  border-radius: 18px;
+  background: white;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.menu-card h3 {
+  margin-bottom: 0.3rem;
+}
+</style>

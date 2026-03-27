@@ -1,0 +1,264 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const courses = [
+  {
+    name: "Klassiker",
+    distance: "10 km",
+    difficulty: "Medium",
+    color: "#facc15",
+    map: "/img/map-klassiker.jpg",
+    elevation: "/img/elevation-klassiker.png",
+    slug: "klassiker"
+  },
+  {
+    name: "Belvedere",
+    distance: "5 km",
+    difficulty: "Easy",
+    color: "#4ade80",
+    map: "/img/map-belvedere.jpg",
+    elevation: "/img/elevation-belvedere.png",
+    slug: "belvedere"
+  },
+  {
+    name: "Berggitzi",
+    distance: "21 km",
+    difficulty: "Hard",
+    color: "#f87171",
+    map: "/img/map-berggitzi.jpg",
+    elevation: "/img/elevation-berggitzi.png",
+    slug: "berggitzi"
+  }
+];
+---
+
+<Layout title="Strecken" image="/img/hero.jpg">
+
+<h2>Wähle deine Strecke</h2>
+<p>Finde die perfekte Herausforderung für dich.</p>
+
+<div class="grid">
+  {courses.map(course => (
+    <div class="card">
+      
+      <div class="card-header" style={`background:${course.color}`}>
+        <h3>{course.name}</h3>
+        <span>{course.distance}</span>
+      </div>
+
+      <div class="card-body">
+        <p>Schwierigkeit: {course.difficulty}</p>
+
+        <img src={course.map} alt="Karte" class="preview" />
+        <img src={course.elevation} alt="Höhenprofil" class="elevation" />
+      </div>
+
+      <div class="card-actions">
+        <a href={`/strecken/${course.slug}`} class="btn secondary">
+          Details
+        </a>
+        <a href="/anmeldung" class="btn primary">
+          Anmelden
+        </a>
+      </div>
+
+    </div>
+  ))}
+</div>
+
+<section class="info">
+
+  <h2>🏁 Wichtige Infos</h2>
+
+  <!-- PROGRAM TABLE -->
+  <h3>Programm</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Klassiker</th>
+          <th>Berggitzi</th>
+          <th>Belvedere</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Distanz</td>
+          <td>5.5 km / 660 Hm</td>
+          <td>2.75 km / 130 Hm</td>
+          <td>12.6 km / 1200 Hm</td>
+        </tr>
+        <tr>
+          <td>Start</td>
+          <td><strong>18:30 Linthal</strong></td>
+          <td><strong>18:30 Reha Klinik</strong></td>
+          <td><strong>17:30 Linthal</strong></td>
+        </tr>
+        <tr>
+          <td>Zielschluss</td>
+          <td>-</td>
+          <td>19:45</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Rückreise:</strong> 20:25 · 20:55 · 21:25 · 21:55</p>
+
+  <!-- START / ZIEL -->
+  <h3>Start- und Zielgelände</h3>
+  <ul>
+    <li><strong>Start / Startnummer / Gepäck:</strong> Talstation Braunwaldbahn</li>
+    <li><strong>Ziel:</strong> Hüttenberg beim Hotel Cristal</li>
+  </ul>
+
+  <!-- GARDEROBEN -->
+  <h3>Garderoben & Toiletten</h3>
+  <ul>
+    <li>❌ Keine Garderoben am Start</li>
+    <li>✅ Toiletten an der Talstation</li>
+    <li>✅ Toiletten im Ziel</li>
+    <li>❌ Keine Duschen</li>
+  </ul>
+
+  <!-- KATEGORIEN -->
+  <h3>Kategorien</h3>
+  <p>Startberechtigt: <strong>Jg. 2014 und älter</strong></p>
+
+  <ul>
+    <li>W / M: 2010 – 1992</li>
+    <li>W35 / M35: 1991 – 1977</li>
+    <li>W50+: 1976 und älter</li>
+  </ul>
+
+  <p>👉 Anmeldung ab <strong>01.04.2026</strong></p>
+
+  <!-- SICHERHEIT -->
+  <h3>Sicherheit & Sanität</h3>
+  <ul>
+    <li>Schlussläufer auf Strecke</li>
+    <li>Streckenposten</li>
+    <li>2 Ärzte + 1 Notfallsanitäter</li>
+  </ul>
+
+  <p><strong>❗ Hilfeleistung ist Pflicht</strong></p>
+
+  <!-- PREISE -->
+  <h3>Preise</h3>
+  <ul>
+    <li>Finishergeschenk für alle</li>
+    <li>Top 3 Preise</li>
+  </ul>
+
+  <!-- STARTGELD -->
+  <h3>Startgeld</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Zeitraum</th>
+          <th>Klassiker</th>
+          <th>Belvedere</th>
+          <th>Berggitzi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01.04.–14.08.</td>
+          <td>35.-</td>
+          <td>40.-</td>
+          <td>30.-</td>
+        </tr>
+        <tr>
+          <td>Vor Ort</td>
+          <td>40.-</td>
+          <td>45.-</td>
+          <td>35.-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PDF -->
+  <h3>Reglement</h3>
+  <iframe src="/img/Wettkampfreglement_Berggeiss_25.pdf"></iframe>
+
+</section>
+
+</Layout>
+
+<style>
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.preview {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.elevation {
+  width: 100%;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn.primary {
+  background: black;
+  color: white;
+}
+
+.btn.secondary {
+  background: #eee;
+}
+</style>

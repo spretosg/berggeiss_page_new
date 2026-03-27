@@ -1,23 +1,112 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+const { title } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: #f7f7f7;
+        color: #1a1a1a;
+      }
+
+      /* HEADER */
+      .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        z-index: 10;
+      }
+
+      .nav-btn {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(6px);
+        transition: all 0.2s ease;
+      }
+
+      .nav-btn:hover {
+        background: rgba(0,0,0,0.6);
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        height: 50vh;
+        min-height: 300px;
+        background-image: url('/img/hero_img.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        background: rgba(0,0,0,0.5);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+      }
+
+      /* CONTENT */
+      .content {
+        max-width: 1100px;
+        margin: -60px auto 2rem;
+        padding: 2rem;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      }
+
+      @media (max-width: 600px) {
+        .header {
+          padding: 1rem;
+        }
+
+        .content {
+          margin: -40px 1rem 2rem;
+          padding: 1.5rem;
+        }
+      }
+    </style>
+
+    <!-- HEADER -->
+    <div class="header">
+      <a href={`${base}`} class="nav-btn">🏠 Home</a>
+      <a href={`${base}contact`} class="nav-btn">Kontakt</a>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1>{title}</h1>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <slot />
+    </div>
+
+  </body>
+</html>
