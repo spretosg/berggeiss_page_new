@@ -1,65 +1,86 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const base = import.meta.env.BASE_URL;
+
 
 const courses = [
   {
+    name: "Berggitzi",
+    distance: "2.75 km",
+    alti: "+130",
+    start: "18.30 Uhr - Braunwald Rehaklinik",
+    cat: "U12, U14, U16, (M/W 16+ keine Rangliste)",
+    color: "#008330",
+    map: `/berggeiss_page_new/img/berggitzi_strecke.png`,
+    elevation: `/berggeiss_page_new/img/berggitzi_profile.png`,
+    slug: "berggitzi",
+    Kondition: "❤️",
+    Technik: "🏃",
+  },
+  {
     name: "Klassiker",
-    distance: "10 km",
-    difficulty: "Medium",
-    color: "#facc15",
-    map: "/img/map-klassiker.jpg",
-    elevation: "/img/elevation-klassiker.png",
-    slug: "klassiker"
+    distance: "5.5 km",
+    alti: "+660",
+    start: "18.30 Uhr - Linthal Braunwaldbahn",
+    cat: "M/W16-34, M/W35-49, M/W 50+ (U16 wird in M/16-34 gewertet)",
+    color: "#0049e6",
+    map: `/berggeiss_page_new/img/klas_strecke.png`,
+    elevation: `/berggeiss_page_new/img/klass_profile.png`,
+    slug: "klassiker",
+    Kondition: "❤️❤️",
+    Technik: "🏃🏃",
   },
   {
     name: "Belvedere",
-    distance: "5 km",
-    difficulty: "Easy",
-    color: "#4ade80",
-    map: "/img/map-belvedere.jpg",
-    elevation: "/img/elevation-belvedere.png",
-    slug: "belvedere"
-  },
-  {
-    name: "Berggitzi",
-    distance: "21 km",
-    difficulty: "Hard",
-    color: "#f87171",
-    map: "/img/map-berggitzi.jpg",
-    elevation: "/img/elevation-berggitzi.png",
-    slug: "berggitzi"
+    distance: "12.6 km",
+    alti: "+1200",
+    start: "18.30 Uhr - Linthal Braunwaldbahn",
+    cat: "M/W16-34, M/W35-49, M/W 50+ (U16 wird in M/16-34 gewertet)",
+    color: "#fa1d1d",
+    map: `/berggeiss_page_new/img/bel_strecke.png`,
+    elevation: `/berggeiss_page_new/img/bel_profile.png`,
+    slug: "belvedere",
+    Kondition: "❤️❤️❤️",
+    Technik: "🏃🏃🏃🏃",
+
   }
 ];
 ---
 
 <Layout title="Strecken" image="/img/hero.jpg">
 
-<h2>Wähle deine Strecke</h2>
-<p>Finde die perfekte Herausforderung für dich.</p>
+<section class="hero">
+  <h1>Finde die perfekte Herausforderung für dich</h1>
+</section>
 
 <div class="grid">
   {courses.map(course => (
     <div class="card">
       
-      <div class="card-header" style={`background:${course.color}`}>
-        <h3>{course.name}</h3>
-        <span>{course.distance}</span>
-      </div>
+<div class="card-header" style={`background:${course.color}`}>
+  <h2>{course.name}</h2>
+
+  <div class="meta">
+    <span class="badge">{course.distance} · {course.alti} Hm</span>
+    <br></br>
+    <span class="start">Start: {course.start}</span>
+  </div>
+</div>
 
       <div class="card-body">
-        <p>Schwierigkeit: {course.difficulty}</p>
 
         <img src={course.map} alt="Karte" class="preview" />
-        <img src={course.elevation} alt="Höhenprofil" class="elevation" />
+        <span class="start">Kategorien: {course.cat}</span>
       </div>
 
       <div class="card-actions">
-        <a href={`/strecken/${course.slug}`} class="btn secondary">
+        <a href={`${base}${course.slug}`}  class="btn secondary">
           Details
         </a>
-        <a href="/anmeldung" class="btn primary">
-          Anmelden
-        </a>
+         <ul class="race-stats">
+            <li>Kondition: {course.Kondition}</li>
+            <li>Technik: {course.Technik}</li>
+        </ul>
       </div>
 
     </div>
@@ -68,92 +89,62 @@ const courses = [
 
 <section class="info">
 
-  <h2>🏁 Wichtige Infos</h2>
+  <section class="hero">
+  <h1>Weitere wichtige Informationen</h1>
+</section>
 
-  <!-- PROGRAM TABLE -->
-  <h3>Programm</h3>
+<div class="tabs">
 
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Klassiker</th>
-          <th>Berggitzi</th>
-          <th>Belvedere</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Distanz</td>
-          <td>5.5 km / 660 Hm</td>
-          <td>2.75 km / 130 Hm</td>
-          <td>12.6 km / 1200 Hm</td>
-        </tr>
-        <tr>
-          <td>Start</td>
-          <td><strong>18:30 Linthal</strong></td>
-          <td><strong>18:30 Reha Klinik</strong></td>
-          <td><strong>17:30 Linthal</strong></td>
-        </tr>
-        <tr>
-          <td>Zielschluss</td>
-          <td>-</td>
-          <td>19:45</td>
-          <td>-</td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- TAB BUTTONS -->
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="openTab(event, 'programm')">Programm</button>
+    <button class="tab-btn" onclick="openTab(event, 'gepaeck')">Gepäck</button>
+    <button class="tab-btn" onclick="openTab(event, 'garderoben')">Garderoben</button>
+    <button class="tab-btn" onclick="openTab(event, 'kategorien')">Kategorien / Startgeld</button>
+    <button class="tab-btn" onclick="openTab(event, 'sicherheit')">Sicherheit</button>
+    <button class="tab-btn" onclick="openTab(event, 'reglement')">Reglement</button>
   </div>
 
-  <p><strong>Rückreise:</strong> 20:25 · 20:55 · 21:25 · 21:55</p>
+  <!-- TAB CONTENT -->
 
-  <!-- START / ZIEL -->
-  <h3>Start- und Zielgelände</h3>
-  <ul>
-    <li><strong>Start / Startnummer / Gepäck:</strong> Talstation Braunwaldbahn</li>
-    <li><strong>Ziel:</strong> Hüttenberg beim Hotel Cristal</li>
-  </ul>
+  <div id="programm" class="tab-content active">
+    <h3>Programm</h3>
+    <p><strong>Startnummernausgabe:</strong> ab 16:00 (Belvedere und Klassiker bis 5min vor dem Start, Berggitzi bis 17.50)</p>
+    <p><strong>Zielschluss:</strong> 19:45</p>
+    <p><strong>Rückreise:</strong> 20:25 · 20:55 · 21:25 · 21:55</p>
+  </div>
 
-  <!-- GARDEROBEN -->
-  <h3>Garderoben & Toiletten</h3>
-  <ul>
-    <li>❌ Keine Garderoben am Start</li>
-    <li>✅ Toiletten an der Talstation</li>
-    <li>✅ Toiletten im Ziel</li>
-    <li>❌ Keine Duschen</li>
-  </ul>
+  <div id="gepaeck" class="tab-content">
+    <h3>Gepäcktransport</h3>
+    <ul>
+      <li><strong>Abgabe:</strong> Bis 10min vor dem Start</li>
+      <li><strong>Ziel:</strong> Hüttenberg beim Hotel Cristal</li>
+    </ul>
+  </div>
 
-  <!-- KATEGORIEN -->
-  <h3>Kategorien</h3>
-  <p>Startberechtigt: <strong>Jg. 2014 und älter</strong></p>
+  <div id="garderoben" class="tab-content">
+    <h3>Garderoben & Toiletten</h3>
+    <ul>
+      <li>❌ Keine Garderoben am Start</li>
+      <li>✅ Toiletten an der Talstation</li>
+      <li>✅ Toiletten im Ziel</li>
+      <li>❌ Keine Duschen im Ziel</li>
+    </ul>
+  </div>
 
-  <ul>
-    <li>W / M: 2010 – 1992</li>
-    <li>W35 / M35: 1991 – 1977</li>
-    <li>W50+: 1976 und älter</li>
-  </ul>
+  <div id="kategorien" class="tab-content">
+    <h3>Kategorien & Startgeld</h3>
 
-  <p>👉 Anmeldung ab <strong>01.04.2026</strong></p>
+    <ul>
+      <li>U12: 2015 und jünger</li>
+      <li>U14: 2014 – 2013</li>
+      <li>U16: 2012 – 2011</li>
+      <li>W/M16-34: 2010 – 1992</li>
+      <li>W/M35-49: 1991 – 1977</li>
+      <li>W/M50+: 1976 und älter</li>
+    </ul>
 
-  <!-- SICHERHEIT -->
-  <h3>Sicherheit & Sanität</h3>
-  <ul>
-    <li>Schlussläufer auf Strecke</li>
-    <li>Streckenposten</li>
-    <li>2 Ärzte + 1 Notfallsanitäter</li>
-  </ul>
-
-  <p><strong>❗ Hilfeleistung ist Pflicht</strong></p>
-
-  <!-- PREISE -->
-  <h3>Preise</h3>
-  <ul>
-    <li>Finishergeschenk für alle</li>
-    <li>Top 3 Preise</li>
-  </ul>
-
-  <!-- STARTGELD -->
+    <!-- STARTGELD -->
   <h3>Startgeld</h3>
 
   <div class="table-wrapper">
@@ -163,29 +154,60 @@ const courses = [
           <th>Zeitraum</th>
           <th>Klassiker</th>
           <th>Belvedere</th>
-          <th>Berggitzi</th>
+          <th>Berggitzi (MW16-34 +) </th>
+          <th>Berggitzi (U16,U14,U12) </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>01.04.–14.08.</td>
+          <td>01.04.–11.08.</td>
           <td>35.-</td>
           <td>40.-</td>
           <td>30.-</td>
+          <td>10.-</td>
         </tr>
         <tr>
-          <td>Vor Ort</td>
+          <td>Nachmeldung</td>
           <td>40.-</td>
           <td>45.-</td>
           <td>35.-</td>
+          <td>10.-</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- PDF -->
-  <h3>Reglement</h3>
-  <iframe src="/img/Wettkampfreglement_Berggeiss_25.pdf"></iframe>
+    <h3>Preise</h3>
+    <ul>
+      <li>Finishergeschenk für alle</li>
+      <li>Top 3 in Wertungskategorien</li>
+    </ul>
+  </div>
+
+  <div id="sicherheit" class="tab-content">
+    <h3>Sicherheit & Sanität</h3>
+    <ul>
+      <li>Schlussläufer auf Strecke</li>
+      <li>Streckenposten</li>
+      <li>2 Ärzte + 1 Notfallsanitäter</li>
+    </ul>
+    <p><strong>❗ Bei Bedarf ist Hilfeleistung durch Teilnehmer:Innen Pflicht</strong></p>
+  </div>
+
+</div>
+
+  <div id="reglement" class="tab-content">
+    <h3>Reglement</h3>
+    <iframe
+    src="/berggeiss_page_new/img/Wettkampfreglement_Berggeiss_25.pdf"
+    height="400"
+    style="width:100%; border-radius:12px;"
+  ></iframe>
+  </div>
+
+</div>
+
+  
 
 </section>
 
@@ -261,4 +283,117 @@ const courses = [
 .btn.secondary {
   background: #eee;
 }
+
+/* TAB BUTTONS */
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: #eee;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.tab-btn:hover {
+  background: #ddd;
+}
+
+.tab-btn.active {
+  background: black;
+  color: white;
+}
+
+/* TAB CONTENT */
+.tab-content {
+  display: none;
+  background: #f9fafb;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.table-wrapper {
+  overflow-x: auto;              /* 👈 mobile scroll */
+  margin-top: 1.5rem;
+}
+
+/* TABLE BASE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* HEADER */
+thead {
+  background: #111;
+  color: white;
+}
+
+th {
+  padding: 0.8rem;
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+/* BODY */
+td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+/* STRIPES */
+tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+/* HOVER */
+tbody tr:hover {
+  background: #f1f5f9;
+}
+
+/* FIRST COLUMN (labels) */
+td:first-child {
+  font-weight: 600;
+  color: #444;
+}
+
+/* RESPONSIVE TEXT */
+@media (max-width: 600px) {
+  th, td {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+}
 </style>
+
+<script is:inline>
+  function openTab(event, tabId) {
+    document.querySelectorAll(".tab-content").forEach(el => {
+      el.classList.remove("active");
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(el => {
+      el.classList.remove("active");
+    });
+
+    document.getElementById(tabId).classList.add("active");
+    event.currentTarget.classList.add("active");
+  }
+</script>

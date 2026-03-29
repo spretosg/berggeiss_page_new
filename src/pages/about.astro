@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Über uns">
+  <h3>Geschichte</h3>
+  <p>
+    Der Verein "Glarner Berggeiss Lauf" organisiert die 
+    "Glarner Berggeiss - Berglauf in Braunwald". 
+    Tamara Kamm und Marcel Ott bilden das OK Präsidium. 
+    Sie werden durch zahlreiche Helfer tatkräftig unterstützt.
+  </p>
+
+  <h3>Nachhaltigkeit</h3>
+  <p>
+    Für Fragen zum Berglauf sowie für Medienanfragen und Fragen zu Bildmaterial, 
+    schreib uns auf folgende Emailadresse. Wir geben gerne Auskunft und antworten dir so schnell wie möglich.
+  </p>
+
+<h3>Kontakt & Newsletter</h3>
+  <p>
+    <strong>
+      <a href="mailto:glarnerberggeiss@bluewin.ch">
+        glarnerberggeiss@bluewin.ch
+      </a>
+    </strong>
+  </p>
+
+  <h3>Newsletter Anmeldung</h3>
+
+  <!-- Newsletter iframe -->
+  <div class="newsletter">
+    <iframe 
+      src="https://glarnerlaufcup.ch/newsletter-anmeldung/"
+      frameborder="0"
+      width: 100%
+      scrolling="auto"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Sendinblue styles -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
+  <style>
+    .newsletter {
+      margin-top: 1.5rem;
+      
+      justify-content: center;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 540px;
+      height: 305px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+</Layout>

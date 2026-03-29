@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Der Klassiker">
+
+<p>
+  <span class="badge">5.5 km</span>
+  <span class="badge">+660 Hm</span>
+  <span class="badge">Intermediate</span>
+</p>
+
+<hr />
+
+<h2>Start</h2>
+<p><strong>18:30 – Linthal Braunwaldbahn</strong></p>
+
+<h2>Highlights</h2>
+<ul>
+  <li>Direkter Start im Tal</li>
+  <li>Konstanter Aufstieg</li>
+  <li>Schöne Naturwege</li>
+  <li>Ziel: Hüttenberg</li>
+</ul>
+
+
+
+<h2>GPX</h2>
+<a href="https://drive.google.com/uc?export=download&id=1wFbdG7IEKZZfbzM3B59zZ61UMlZ6u_2N">Download GPX</a>
+
+<h2>Karte</h2>
+<iframe src='https://map.geo.admin.ch/embed.html?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.zeitreihen,ch.bfs.gebaeude_wohnungs_register,ch.bav.haltestellen-oev,ch.swisstopo.swisstlm3d-wanderwege,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2FqYv2BFu-QGWrpea1DedfdQ&layers_visibility=false,false,false,false,true&layers_timestamp=18641231,,,,&layers_opacity=1,1,1,0.8,1&E=2718143.29&N=1199287.96&zoom=6.6' height='400' frameborder='0' style='width: 100% !important; border:0;'></iframe> 
+
+<h3>Höhenprofil</h3>
+
+<div class="image-wrapper">
+  <img 
+    src={`${base}img/klass_profil.png`} 
+    alt="Höhenprofil Belvedere" 
+    class="clickable"
+    onclick="openModal(this.src)"
+  />
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+  <img id="modal-img" />
+</div>
+
+<script>
+  function openModal(src) {
+    const modal = document.getElementById("modal");
+    const img = document.getElementById("modal-img");
+    img.src = src;
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+</script>
+
+</Layout>
