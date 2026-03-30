@@ -7,7 +7,7 @@ const menu = [
   {
     title: "Strecken und Anmeldung",
     desc: "Infos zu Berggitzi, Klassiker und Belvedere",
-    link: "/strecken",
+    link: "/der_lauf",
     image: `/berggeiss_page_new/img/lauf.png`
   },
     {
@@ -37,6 +37,7 @@ const menu = [
 <div class="sticker">NEU: Kinder-, Jungend und Genusslauf</div>
   <h1>Berglauferlebnis in Braunwald</h1>
 </section>
+
 
 <section class="menu-grid">
   {menu.map(item => (
@@ -76,16 +77,16 @@ const menu = [
 
   position: relative;
   width: 90%;
-  height: 120px;                 /* 👈 increase from 100px */
+  height: 120px;                
 
-  background-size: cover !important;   /* 👈 force it */
+  background-size: cover !important;   
   background-position: center;
   background-repeat: no-repeat;
 
   text-decoration: none;
   color: white;
   overflow: hidden;
-  filter: grayscale(60%);           /* 👈 start grey */
+  filter: grayscale(100%);           /* 👈 start grey */
   transition: filter 0.3s ease, transform 0.2s ease;
 }
 
@@ -132,9 +133,7 @@ const menu = [
   text-align: center;
   margin-bottom: 2rem;
 }
-.overlay {
-  backdrop-filter: blur(4px);
-}
+
 .menu-card:hover {
   transform: translateY(-5px) scale(1.02);
 }
@@ -194,7 +193,7 @@ const menu = [
   top: 100px;
   right: 5px;
 
-  background: #22c55e; /* green */
+  background: #eeb806; /* green */
   color: white;
 
   padding: 0.6rem 2rem;
